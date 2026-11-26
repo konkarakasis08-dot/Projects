@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MixPulse</string>
+    <string name="nav_booth">DJ Booth</string>
+    <string name="nav_vibe">Δημιουργία</string>
+    <string name="nav_youtube">YouTube</string>
+    <string name="nav_playlists">Λίστες</string>
+    <string name="ai_placeholder_notice">Ενδεικτική AI επιμέλεια (χωρίς σύνδεση Gemini). Ενεργοποίησε το Firebase για ζωντανές προτάσεις AI.</string>
+    <string name="automix_label">Auto-Mix Χωρίς Κενό</string>
+    <string name="mix_now">Αλλαγή Τώρα</string>
+    <string name="crossfade_duration_label">Διάρκεια Αλλαγής</string>
+    <string name="search_youtube_hint">Αναζήτηση τραγουδιού ή επικόλληση URL YouTube...</string>
+    <string name="vibe_prompt_hint">Περιέγραψε την αίσθηση (π.χ. βράδυ σε ταράτσα, afro house με ενέργεια)...</string>
+</resources>

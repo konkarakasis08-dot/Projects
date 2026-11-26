@@ -1,0 +1,6 @@
+{
+  "name": "MixPulse",
+  "description": "AI-powered DJ playlist creator and seamless crossfade mixer with YouTube track discovery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
