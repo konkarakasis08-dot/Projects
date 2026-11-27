@@ -137,8 +137,8 @@ class PlaylistRepository(
     suspend fun createEmptyPlaylist(name: String, vibeTag: String, crossfadeSeconds: Int): Long {
         return dao.insertPlaylist(
             PlaylistEntity(
-                name = name.trim().ifEmpty { "Νέο DJ Σετ" },
-                moodDescription = "Προσωπική λίστα DJ MixPulse",
+                name = name.trim().ifEmpty { "New DJ Set" },
+                moodDescription = "Personal MixPulse DJ playlist",
                 vibeTag = vibeTag.ifEmpty { "Custom Mix" },
                 targetBpmMin = 115,
                 targetBpmMax = 128,
@@ -163,7 +163,7 @@ class PlaylistRepository(
                 durationSeconds = result.durationSeconds.coerceAtLeast(30),
                 bpm = result.estimatedBpm,
                 energy = 75,
-                transitionNote = "YouTube track · Auto-crossfade έτοιμο",
+                transitionNote = "YouTube track · Auto-crossfade ready",
                 sortOrder = nextOrder
             )
         )
@@ -180,14 +180,14 @@ class PlaylistRepository(
             TrackEntity(
                 playlistId = playlistId,
                 title = title,
-                artist = "Τοπικό Αρχείο",
+                artist = "Local File",
                 sourceType = TrackSourceType.LOCAL_AUDIO.name,
                 sourceUriOrId = uriString,
                 thumbnailUrl = null,
                 durationSeconds = durationSeconds.coerceAtLeast(15),
                 bpm = 120,
                 energy = 75,
-                transitionNote = "Τοπικό audio · Gapless crossfade",
+                transitionNote = "Local audio · Gapless crossfade",
                 sortOrder = nextOrder
             )
         )

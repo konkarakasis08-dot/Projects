@@ -253,7 +253,7 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
         val ratio = (targetBpm / standbyTrack.bpm.coerceAtLeast(60)).coerceIn(0.85f, 1.20f)
         setDeckPitch(standbyId, ratio)
         _state.update {
-            it.copy(statusMessage = "BPM συγχρονισμός: ${standbyTrack.title.take(22)} → ${targetBpm.toInt()} BPM")
+            it.copy(statusMessage = "BPM Sync: ${standbyTrack.title.take(22)} → ${targetBpm.toInt()} BPM")
         }
     }
 
@@ -341,7 +341,7 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
                 _state.update { it.copy(currentQueueIndex = nextIdx) }
                 triggerCrossfadeTo(targetDeck, advanceQueueIndex = false)
             } else {
-                _state.update { it.copy(statusMessage = "Δεν υπάρχει επόμενο κομμάτι στην ουρά.") }
+                _state.update { it.copy(statusMessage = "No next track in queue.") }
             }
         } else {
             triggerCrossfadeTo(targetDeck, advanceQueueIndex = true)
@@ -385,7 +385,7 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
                 it.copy(
                     isCrossfading = true,
                     crossfadeProgress = 0f,
-                    statusMessage = "Αλλαγή χωρίς κενό → ${targetTrack.title.take(26)}"
+                    statusMessage = "Gapless transition → ${targetTrack.title.take(26)}"
                 )
             }
 
@@ -483,7 +483,7 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
                         prepareMediaPlayer(deckId, Uri.fromFile(wavFile), autoPlay, initialVol)
                     } else {
                         updateDeck(deckId) {
-                            it.copy(isBuffering = false, errorMessage = "Σφάλμα φόρτωσης groove")
+                            it.copy(isBuffering = false, errorMessage = "Error loading groove stem")
                         }
                     }
                 }
@@ -520,7 +520,7 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
                 setOnErrorListener { _, what, extra ->
                     Log.e("DjMixerEngine", "MediaPlayer error deck=$deckId what=$what extra=$extra")
                     updateDeck(deckId) {
-                        it.copy(isBuffering = false, isPlaying = false, errorMessage = "Αδυναμία αναπαραγωγής αρχείου")
+                        it.copy(isBuffering = false, isPlaying = false, errorMessage = "Unable to play audio file")
                     }
                     true
                 }
@@ -530,7 +530,7 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
         }.onFailure { e ->
             Log.e("DjMixerEngine", "Failed preparing MediaPlayer", e)
             updateDeck(deckId) {
-                it.copy(isBuffering = false, isPlaying = false, errorMessage = "Μη προσβάσιμο αρχείο ήχου")
+                it.copy(isBuffering = false, isPlaying = false, errorMessage = "Audio file inaccessible")
             }
         }
     }
@@ -684,9 +684,9 @@ class DjMixerEngine(context: Context) : YouTubeDeckListener {
         val failedTrack = deckState(deckId).track
         val isEmbedBlocked = errorCode in listOf(101, 150, 152, 153)
         val msg = when {
-            isEmbedBlocked -> "Περιορισμός ενσωμάτωσης ($errorCode) — αναζήτηση εναλλακτικού..."
-            errorCode == 2 || errorCode == 5 -> "Πρόβλημα φόρτωσης video YouTube ($errorCode)."
-            else -> "Σφάλμα YouTube ($errorCode)."
+            isEmbedBlocked -> "Embed restricted ($errorCode) — finding alternative..."
+            errorCode == 2 || errorCode == 5 -> "YouTube playback issue ($errorCode)."
+            else -> "YouTube error ($errorCode)."
         }
         updateDeck(deckId) { it.copy(isPlaying = false, isBuffering = isEmbedBlocked, errorMessage = msg) }
         _state.update { it.copy(statusMessage = msg) }

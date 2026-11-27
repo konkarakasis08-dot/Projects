@@ -31,7 +31,7 @@ class YouTubeSearchRepository(private val appOrigin: String) {
                     val resolved = resolveYouTubeUrlInternal(directId)
                     val embedOk = isVideoEmbeddable(directId)
                     if (!embedOk) {
-                        throw IllegalStateException("Το συγκεκριμένο βίντεο έχει περιορισμό ενσωμάτωσης (150) και δεν μπορεί να προστεθεί.")
+                        throw IllegalStateException("This YouTube video has embedding disabled (Error 150) and cannot be added.")
                     }
                     return@runCatching listOf(resolved.copy(isEmbeddable = true))
                 }
@@ -55,7 +55,7 @@ class YouTubeSearchRepository(private val appOrigin: String) {
                 }
 
                 val jsonStr = extractYtInitialDataJson(html)
-                    ?: throw IllegalStateException("Δεν βρέθηκαν αποτελέσματα YouTube")
+                    ?: throw IllegalStateException("No YouTube results found")
 
                 val root = JSONObject(jsonStr)
                 val rawResults = mutableListOf<YouTubeSearchResult>()
@@ -118,7 +118,7 @@ class YouTubeSearchRepository(private val appOrigin: String) {
         withContext(Dispatchers.IO) {
             runCatching {
                 val videoId = extractVideoId(urlOrId.trim())
-                    ?: throw IllegalArgumentException("Μη έγκυρος σύνδεσμος YouTube")
+                    ?: throw IllegalArgumentException("Invalid YouTube link")
                 resolveYouTubeUrlInternal(videoId)
             }
         }

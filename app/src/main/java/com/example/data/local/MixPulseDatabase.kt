@@ -83,7 +83,7 @@ object StarterPlaylistsSeeder {
         val groovePlaylistId = dao.insertPlaylist(
             PlaylistEntity(
                 name = "Midnight Groove (Live Stems)",
-                moodDescription = "Έτοιμο DJ σετ με ενσωματωμένα ρυθμικά stems για άμεσο τεστ crossfade χωρίς κενό",
+                moodDescription = "Ready-to-mix DJ set with built-in rhythm stems for instant gapless crossfade testing",
                 vibeTag = "Afro & Deep Groove",
                 targetBpmMin = 116,
                 targetBpmMax = 128,
@@ -106,7 +106,7 @@ object StarterPlaylistsSeeder {
                     durationSeconds = 36,
                     bpm = 116,
                     energy = 68,
-                    transitionNote = "Ξεκίνημα με ζεστό deep bassline — έτοιμο για 8s crossfade",
+                    transitionNote = "Warm deep bassline opener — ready for 8s crossfade",
                     sortOrder = 0
                 ),
                 TrackEntity(
@@ -119,7 +119,7 @@ object StarterPlaylistsSeeder {
                     durationSeconds = 36,
                     bpm = 122,
                     energy = 80,
-                    transitionNote = "Ανέβασμα κρουστών στα 122 BPM με Equal Power αλλαγή",
+                    transitionNote = "Percussion lift at 122 BPM with Equal Power blend",
                     sortOrder = 1
                 ),
                 TrackEntity(
@@ -145,7 +145,7 @@ object StarterPlaylistsSeeder {
                     durationSeconds = 36,
                     bpm = 96,
                     energy = 52,
-                    transitionNote = "Ομαλό σβήσιμο για χαλαρό κλείσιμο σετ",
+                    transitionNote = "Smooth fade-out for a relaxed set closing",
                     sortOrder = 3
                 )
             )

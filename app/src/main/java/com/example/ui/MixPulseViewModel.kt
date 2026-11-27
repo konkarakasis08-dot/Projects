@@ -122,7 +122,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                     mixerEngine.cancelBlockedTrackAndAdvance(
                         event.deckId,
                         event.track,
-                        "Ακυρώθηκε τραγούδι με περιορισμό YouTube (${event.errorCode})."
+                        "Skipped YouTube-restricted track (${event.errorCode})."
                     )
                     return@collect
                 }
@@ -145,7 +145,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                     )
                     val shouldAutoPlay = mixerState.value.activeDeck == event.deckId
                     mixerEngine.loadSingleTrackToDeck(event.deckId, replacement, autoPlay = shouldAutoPlay)
-                    mixerEngine.showStatusMessage("Ακυρώθηκε το κλειδωμένο βίντεο — φορτώθηκε: ${alt.title.take(24)}")
+                    mixerEngine.showStatusMessage("Replaced restricted video — loaded: ${alt.title.take(24)}")
                 } else {
                     consecutiveFailures[event.deckId] = 0
                     if (event.track.id > 0L) {
@@ -154,7 +154,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                     mixerEngine.cancelBlockedTrackAndAdvance(
                         event.deckId,
                         event.track,
-                        "Ακυρώθηκε τραγούδι με περιορισμό YouTube (${event.errorCode})."
+                        "Skipped YouTube-restricted track (${event.errorCode})."
                     )
                 }
             }
@@ -220,7 +220,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                 _vibeState.update {
                     it.copy(
                         isGenerating = false,
-                        errorMessage = e.localizedMessage ?: "Αποτυχία δημιουργίας playlist"
+                        errorMessage = e.localizedMessage ?: "Failed to create playlist"
                     )
                 }
             }
@@ -251,14 +251,14 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                     it.copy(
                         isLoading = false,
                         results = items,
-                        errorMessage = if (items.isEmpty()) "Δεν βρέθηκαν διαθέσιμα τραγούδια (όσα είχαν περιορισμό YouTube 150 αφαιρέθηκαν). Δοκίμασε π.χ. remix ή DJ mix." else null
+                        errorMessage = if (items.isEmpty()) "No embeddable tracks found (YouTube 150 restricted videos were filtered out). Try searching remix or DJ mix." else null
                     )
                 }
             }.onFailure { err ->
                 _youtubeState.update {
                     it.copy(
                         isLoading = false,
-                        errorMessage = err.localizedMessage ?: "Αδυναμία σύνδεσης με YouTube"
+                        errorMessage = err.localizedMessage ?: "Unable to connect to YouTube"
                     )
                 }
             }
@@ -292,7 +292,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                 }
             }
             _youtubeState.update {
-                it.copy(feedbackMessage = "Προστέθηκε: ${result.title.take(28)}")
+                it.copy(feedbackMessage = "Added: ${result.title.take(28)}")
             }
         }
     }
@@ -306,7 +306,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
             thumbnailUrl = result.thumbnailUrl,
             durationSeconds = result.durationSeconds,
             bpm = result.estimatedBpm,
-            transitionNote = "Φορτώθηκε απευθείας από YouTube στο Deck ${deckId.name}"
+            transitionNote = "Loaded directly from YouTube onto Deck ${deckId.name}"
         )
         mixerEngine.loadSingleTrackToDeck(deckId, track, autoPlay = true)
     }
@@ -329,7 +329,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
             val pid = targetPlaylistId
                 ?: mixerState.value.activePlaylistId.takeIf { it > 0L }
                 ?: playlists.value.firstOrNull()?.id
-                ?: playlistRepository.createEmptyPlaylist("Τοπική Λίστα DJ", "Local", 8)
+                ?: playlistRepository.createEmptyPlaylist("Local DJ Playlist", "Local", 8)
 
             playlistRepository.addLocalTrackToPlaylist(
                 playlistId = pid,
@@ -338,7 +338,7 @@ class MixPulseViewModel(application: Application) : AndroidViewModel(application
                 durationSeconds = meta.second
             )
             _youtubeState.update {
-                it.copy(feedbackMessage = "Προστέθηκε τοπικό κομμάτι: ${meta.first.take(26)}")
+                it.copy(feedbackMessage = "Added local track: ${meta.first.take(26)}")
             }
         }
     }

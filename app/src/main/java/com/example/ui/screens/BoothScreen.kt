@@ -191,12 +191,12 @@ fun BoothScreen(
                 ) {
                     Column {
                         Text(
-                            text = "Ουρά Αναπαραγωγής",
+                            text = "Playback Queue",
                             style = MaterialTheme.typography.titleLarge,
                             color = TextPrimary
                         )
                         Text(
-                            text = "${mixerState.queue.size} κομμάτια · Αυτόματη μετάβαση",
+                            text = "${mixerState.queue.size} tracks · Auto transition",
                             style = MaterialTheme.typography.bodySmall,
                             color = TextSecondary
                         )
@@ -211,12 +211,12 @@ fun BoothScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.FolderOpen,
-                                contentDescription = "Προσθήκη από συσκευή",
+                                contentDescription = "Add from device",
                                 modifier = Modifier.size(16.dp),
                                 tint = AcidMint
                             )
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Αρχείο", style = MaterialTheme.typography.labelLarge, color = TextPrimary)
+                            Text("File", style = MaterialTheme.typography.labelLarge, color = TextPrimary)
                         }
                         OutlinedButton(
                             onClick = onNavigateToYouTube,
@@ -227,7 +227,7 @@ fun BoothScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Add,
-                                contentDescription = "Αναζήτηση YouTube",
+                                contentDescription = "Search YouTube",
                                 modifier = Modifier.size(16.dp),
                                 tint = DeckBCoral
                             )
@@ -259,7 +259,7 @@ fun BoothScreen(
                                 modifier = Modifier.size(36.dp)
                             )
                             Text(
-                                text = "Η ουρά του DJ Booth είναι άδεια",
+                                text = "The DJ Booth queue is empty",
                                 style = MaterialTheme.typography.titleMedium,
                                 color = TextPrimary
                             )
@@ -269,7 +269,7 @@ fun BoothScreen(
                             ) {
                                 Icon(Icons.Default.AutoAwesome, contentDescription = null, modifier = Modifier.size(18.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Φτιάξε Playlist με Vibe")
+                                Text("Create Playlist by Vibe")
                             }
                         }
                     }
@@ -443,14 +443,14 @@ private fun DeckConsoleCard(
                     }
 
                     Text(
-                        text = track?.title ?: "Κενό Deck — Επέλεξε τραγούδι",
+                        text = track?.title ?: "Empty Deck — Select a track",
                         style = MaterialTheme.typography.titleMedium,
                         color = if (track != null) TextPrimary else TextMuted,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                     Text(
-                        text = track?.artist ?: "Αναμονή για Auto-Cue",
+                        text = track?.artist ?: "Waiting for Auto-Cue",
                         style = MaterialTheme.typography.bodySmall,
                         color = TextSecondary,
                         maxLines = 1,
@@ -469,7 +469,7 @@ private fun DeckConsoleCard(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Replay,
-                            contentDescription = "Επαναφορά Cue Deck ${deck.deckId.name}",
+                            contentDescription = "Reset Cue Deck ${deck.deckId.name}",
                             tint = if (track != null) TextSecondary else TextMuted
                         )
                     }
@@ -486,7 +486,7 @@ private fun DeckConsoleCard(
                         Box(contentAlignment = Alignment.Center) {
                             Icon(
                                 imageVector = if (deck.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                                contentDescription = if (deck.isPlaying) "Παύση" else "Αναπαραγωγή",
+                                contentDescription = if (deck.isPlaying) "Pause" else "Play",
                                 tint = ObsidianBg,
                                 modifier = Modifier.size(26.dp)
                             )
@@ -534,8 +534,8 @@ private fun DeckConsoleCard(
                             color = TextSecondary
                         )
                         Text(
-                            text = if (deck.isBuffering) "Φόρτωση..."
-                            else if (isEndingSoon) "ΜΙΞΗ ΣΕ -${displayedRemaining}s"
+                            text = if (deck.isBuffering) "Buffering..."
+                            else if (isEndingSoon) "MIX IN -${displayedRemaining}s"
                             else "-${formatTimecode(displayedRemaining)}",
                             style = MaterialTheme.typography.labelMedium,
                             color = if (isEndingSoon) WarmGold else TextSecondary,
@@ -597,7 +597,7 @@ private fun DeckConsoleCard(
                                 border = BorderStroke(1.dp, DeckBCoral.copy(alpha = 0.6f)),
                                 contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
                             ) {
-                                Text("Άνοιγμα YT", style = MaterialTheme.typography.labelSmall, color = DeckBCoral)
+                                Text("Open YT", style = MaterialTheme.typography.labelSmall, color = DeckBCoral)
                             }
                         }
                     }
@@ -715,7 +715,7 @@ private fun CrossfaderConsoleCard(
                     Icon(Icons.Default.SkipNext, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
-                        text = if (mixerState.isCrossfading) "Αλλαγή..." else "Αλλαγή Τώρα",
+                        text = if (mixerState.isCrossfading) "Mixing..." else "Mix Now",
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold
                     )
@@ -729,7 +729,7 @@ private fun CrossfaderConsoleCard(
                         .height(48.dp)
                         .testTag("sync_bpm_btn")
                 ) {
-                    Icon(Icons.Default.Sync, contentDescription = "Συγχρονισμός BPM", tint = DeckACyan, modifier = Modifier.size(18.dp))
+                    Icon(Icons.Default.Sync, contentDescription = "Sync BPM", tint = DeckACyan, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
                     Text("Sync", style = MaterialTheme.typography.labelLarge, color = DeckACyan)
                 }
@@ -742,7 +742,7 @@ private fun CrossfaderConsoleCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Tune,
-                        contentDescription = "Ρυθμίσεις Crossfade",
+                        contentDescription = "Crossfade Settings",
                         tint = if (showAdvanced) DeckACyan else TextSecondary
                     )
                 }
@@ -756,12 +756,12 @@ private fun CrossfaderConsoleCard(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Auto-Mix Χωρίς Κενό (${mixerState.crossfadeDurationSec}s)",
+                        text = "Gapless Auto-Mix (${mixerState.crossfadeDurationSec}s)",
                         style = MaterialTheme.typography.titleSmall,
                         color = TextPrimary
                     )
                     Text(
-                        text = "Προ-φορτώνει το επόμενο τραγούδι & κάνει αυτόματο fade",
+                        text = "Pre-cues the next track & fades automatically",
                         style = MaterialTheme.typography.bodySmall,
                         color = TextSecondary
                     )
@@ -785,7 +785,7 @@ private fun CrossfaderConsoleCard(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     Text(
-                        text = "Διάρκεια Αλλαγής: ${mixerState.crossfadeDurationSec} δευτερόλεπτα",
+                        text = "Crossfade Duration: ${mixerState.crossfadeDurationSec} seconds",
                         style = MaterialTheme.typography.labelLarge,
                         color = TextPrimary
                     )
@@ -802,7 +802,7 @@ private fun CrossfaderConsoleCard(
                     )
 
                     Text(
-                        text = "Καμπύλη Crossfade",
+                        text = "Crossfade Curve",
                         style = MaterialTheme.typography.labelLarge,
                         color = TextPrimary
                     )
@@ -811,7 +811,7 @@ private fun CrossfaderConsoleCard(
                             FilterChip(
                                 selected = mixerState.crossfadeCurve == curve,
                                 onClick = { onCurveChange(curve) },
-                                label = { Text(curve.labelGr, style = MaterialTheme.typography.labelSmall) },
+                                label = { Text(curve.label, style = MaterialTheme.typography.labelSmall) },
                                 colors = FilterChipDefaults.filterChipColors(
                                     selectedContainerColor = DeckACyan.copy(alpha = 0.2f),
                                     selectedLabelColor = DeckACyan
@@ -821,7 +821,7 @@ private fun CrossfaderConsoleCard(
                     }
 
                     Text(
-                        text = "Master Ένταση: ${(mixerState.masterVolume * 100).roundToInt()}%",
+                        text = "Master Volume: ${(mixerState.masterVolume * 100).roundToInt()}%",
                         style = MaterialTheme.typography.labelLarge,
                         color = TextPrimary
                     )

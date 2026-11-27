@@ -116,14 +116,14 @@ fun TurntableDisc(
             if (!thumbnailUrl.isNullOrBlank()) {
                 AsyncImage(
                     model = thumbnailUrl,
-                    contentDescription = "Εξώφυλλο τραγουδιού",
+                    contentDescription = "Track cover art",
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )
             } else {
                 Image(
                     painter = painterResource(id = R.drawable.img_vinyl_cover),
-                    contentDescription = "Βινύλιο MixPulse",
+                    contentDescription = "MixPulse vinyl disc",
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )

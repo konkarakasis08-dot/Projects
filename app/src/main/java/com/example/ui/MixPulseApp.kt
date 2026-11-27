@@ -400,7 +400,7 @@ private fun PersistentDeckMonitorDock(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.SkipNext,
-                                contentDescription = "Αλλαγή Τώρα",
+                                contentDescription = "Mix Now",
                                 tint = AcidMint
                             )
                         }
@@ -414,7 +414,7 @@ private fun PersistentDeckMonitorDock(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = if (activeDeck.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                                    contentDescription = if (activeDeck.isPlaying) "Παύση" else "Αναπαραγωγή",
+                                    contentDescription = if (activeDeck.isPlaying) "Pause" else "Play",
                                     tint = ObsidianBg,
                                     modifier = Modifier.size(22.dp)
                                 )

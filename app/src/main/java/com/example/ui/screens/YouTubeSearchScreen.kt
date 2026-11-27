@@ -63,7 +63,6 @@ import com.example.data.model.DjPlaylist
 import com.example.data.model.YouTubeSearchResult
 import com.example.ui.YouTubeSearchUiState
 import com.example.ui.theme.AcidMint
-import com.example.ui.theme.WarmGold
 import com.example.ui.theme.ConsoleCardBorder
 import com.example.ui.theme.ConsoleSurface
 import com.example.ui.theme.ConsoleSurfaceElevated
@@ -76,7 +75,7 @@ import com.example.ui.theme.TextSecondary
 
 private val QuickYouTubeGenres = listOf(
     "Afro House" to "Afro House music 2025",
-    "Greek Remixes" to "Greek club house remix",
+    "Club Remixes" to "Club house remix 2025",
     "Deep House" to "Deep House sunset mix",
     "Melodic Techno" to "Melodic Techno club",
     "90s Dance" to "90s dance club hits",
@@ -121,12 +120,12 @@ fun YouTubeSearchScreen(
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
-                        text = "ΑΝΑΖΗΤΗΣΗ YOUTUBE & ΑΡΧΕΙΑ",
+                        text = "YOUTUBE DISCOVERY & FILES",
                         style = MaterialTheme.typography.labelMedium,
                         color = DeckBCoral
                     )
                     Text(
-                        text = "Βρες τραγούδια για το DJ σετ σου",
+                        text = "Find tracks for your DJ set",
                         style = MaterialTheme.typography.headlineSmall,
                         color = TextPrimary
                     )
@@ -187,7 +186,7 @@ fun YouTubeSearchScreen(
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = Icons.Default.Search,
-                                    contentDescription = "Αναζήτηση",
+                                    contentDescription = "Search",
                                     tint = ObsidianBg
                                 )
                             }
@@ -233,7 +232,7 @@ fun YouTubeSearchScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Προσθήκη στη λίστα:",
+                                text = "Add to playlist:",
                                 style = MaterialTheme.typography.labelLarge,
                                 color = TextSecondary
                             )
@@ -245,7 +244,7 @@ fun YouTubeSearchScreen(
                             ) {
                                 Icon(Icons.Default.FolderOpen, contentDescription = null, tint = AcidMint, modifier = Modifier.size(16.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Από συσκευή", style = MaterialTheme.typography.labelSmall, color = AcidMint)
+                                Text("From device", style = MaterialTheme.typography.labelSmall, color = AcidMint)
                             }
                         }
 
@@ -391,7 +390,7 @@ private fun YouTubeResultCard(
                         color = AcidMint.copy(alpha = 0.14f)
                     ) {
                         Text(
-                            text = "Έτοιμο για DJ Mix",
+                            text = "Ready for DJ Mix",
                             style = MaterialTheme.typography.labelSmall,
                             color = AcidMint,
                             modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
@@ -418,7 +417,7 @@ private fun YouTubeResultCard(
                 ) {
                     Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Στη Λίστα", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                    Text("Add to Playlist", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                 }
 
                 OutlinedButton(

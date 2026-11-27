@@ -6,9 +6,9 @@ enum class TrackSourceType {
     BUILT_IN_GROOVE
 }
 
-enum class CrossfadeCurve(val labelGr: String) {
+enum class CrossfadeCurve(val label: String) {
     EQUAL_POWER("Equal Power"),
-    LINEAR("Γραμμική"),
+    LINEAR("Linear"),
     CLUB_CUT("Club Blend")
 }
 
@@ -28,7 +28,7 @@ data class DjTrack(
     val durationSeconds: Int = 180,
     val bpm: Int = 120,
     val energy: Int = 70,
-    val transitionNote: String = "Ομαλό crossfade στα τελευταία δευτερόλεπτα",
+    val transitionNote: String = "Smooth crossfade in final seconds",
     val sortOrder: Int = 0
 )
 
@@ -73,35 +73,35 @@ object VibePresets {
         VibePreset(
             id = "afro_sunset",
             title = "Sunset Afro House",
-            subtitle = "Ζεστά κρουστά & ρυθμός ηλιοβασιλέματος",
-            promptSeed = "Afro house & melodic groove για ηλιοβασίλεμα με φίλους",
+            subtitle = "Warm percussion & sunset rhythms",
+            promptSeed = "Afro house & melodic groove for sunset with friends",
             bpmRange = 118..124,
             defaultEnergy = 72,
             defaultCrossfadeSec = 10
         ),
         VibePreset(
             id = "midnight_drive",
-            title = "Μεσάνυχτα Drive",
-            subtitle = "Υπνωτική ηλεκτρονική & deep basslines",
-            promptSeed = "Melodic techno και deep night drive vibes",
+            title = "Midnight Drive",
+            subtitle = "Hypnotic electronica & deep basslines",
+            promptSeed = "Melodic techno and deep night drive vibes",
             bpmRange = 122..128,
             defaultEnergy = 82,
             defaultCrossfadeSec = 12
         ),
         VibePreset(
             id = "greek_club",
-            title = "Ελληνικό Summer Club",
-            subtitle = "Ανεβαστικά ελληνικά remixes & dance",
-            promptSeed = "Ανεβαστικά ελληνικά club remixes και καλοκαιρινό πάρτι",
+            title = "Summer Club Hits",
+            subtitle = "Upbeat dance remixes & party anthems",
+            promptSeed = "Upbeat summer club remixes and high-energy party",
             bpmRange = 120..128,
             defaultEnergy = 90,
             defaultCrossfadeSec = 6
         ),
         VibePreset(
             id = "rooftop_chill",
-            title = "Chill Ταράτσα",
-            subtitle = "Απαλό downtempo, nu-disco & lounge",
-            promptSeed = "Χαλαρό lounge nu-disco για ποτό σε ταράτσα",
+            title = "Rooftop Chill",
+            subtitle = "Smooth downtempo, nu-disco & lounge",
+            promptSeed = "Relaxed lounge nu-disco for rooftop drinks",
             bpmRange = 102..114,
             defaultEnergy = 45,
             defaultCrossfadeSec = 10
@@ -109,8 +109,8 @@ object VibePresets {
         VibePreset(
             id = "peak_workout",
             title = "Peak Energy Cardio",
-            subtitle = "Δυνατό τέμπο χωρίς καμία παύση",
-            promptSeed = "Δυνατή dance house και bass για γυμναστική",
+            subtitle = "Driving tempo with zero pauses",
+            promptSeed = "High-energy dance house and bass for workout",
             bpmRange = 126..134,
             defaultEnergy = 95,
             defaultCrossfadeSec = 5
@@ -118,8 +118,8 @@ object VibePresets {
         VibePreset(
             id = "retro_90s",
             title = "90s / 00s Party",
-            subtitle = "Κλασικά dance anthems με καθαρές αλλαγές",
-            promptSeed = "90s και 00s dance party classics",
+            subtitle = "Classic dance anthems with clean blends",
+            promptSeed = "90s and 00s dance party classics",
             bpmRange = 116..126,
             defaultEnergy = 84,
             defaultCrossfadeSec = 7

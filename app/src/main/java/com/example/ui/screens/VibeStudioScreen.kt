@@ -132,12 +132,12 @@ fun VibeStudioScreen(
                                 color = DeckACyan
                             )
                             Text(
-                                text = "Φτιάξε DJ Set ανάλογα με την αίσθηση",
+                                text = "Build a DJ Set by Vibe",
                                 style = MaterialTheme.typography.headlineSmall,
                                 color = TextPrimary
                             )
                             Text(
-                                text = "Αυτόματη αναζήτηση στο YouTube & αλλαγές χωρίς κενό",
+                                text = "Automatic YouTube track lookup & gapless crossfades",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = TextSecondary
                             )
@@ -157,7 +157,7 @@ fun VibeStudioScreen(
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "Διάλεξε Διάθεση / Vibe",
+                        text = "Choose Mood / Vibe",
                         style = MaterialTheme.typography.titleMedium,
                         color = TextPrimary
                     )
@@ -213,7 +213,7 @@ fun VibeStudioScreen(
                 OutlinedTextField(
                     value = state.customPrompt,
                     onValueChange = onPromptChange,
-                    label = { Text("Περιγραφή αίσθησης (προαιρετικό)") },
+                    label = { Text("Describe the vibe (optional)") },
                     placeholder = { Text(stringResource(R.string.vibe_prompt_hint)) },
                     minLines = 2,
                     maxLines = 3,
@@ -249,7 +249,7 @@ fun VibeStudioScreen(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text("Ενέργεια & Τέμπο", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+                            Text("Energy & Tempo", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
                             Text("${state.energyLevel}%", style = MaterialTheme.typography.labelMedium, color = DeckBCoral)
                         }
                         Slider(
@@ -267,7 +267,7 @@ fun VibeStudioScreen(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text("Αριθμός Τραγουδιών", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+                            Text("Track Count", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
                             Text("${state.trackCount} tracks", style = MaterialTheme.typography.labelMedium, color = DeckACyan)
                         }
                         Slider(
@@ -286,7 +286,7 @@ fun VibeStudioScreen(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text("Διάρκεια Crossfade (χωρίς κενό)", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+                            Text("Crossfade Duration (gapless)", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
                             Text("${state.crossfadeSeconds}s", style = MaterialTheme.typography.labelMedium, color = AcidMint)
                         }
                         Slider(
@@ -301,13 +301,13 @@ fun VibeStudioScreen(
                             )
                         )
 
-                        Text("Καμπύλη Αλλαγής", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+                        Text("Crossfade Curve", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             CrossfadeCurve.entries.forEach { curve ->
                                 FilterChip(
                                     selected = state.curve == curve,
                                     onClick = { onCurveChange(curve) },
-                                    label = { Text(curve.labelGr, style = MaterialTheme.typography.labelSmall) },
+                                    label = { Text(curve.label, style = MaterialTheme.typography.labelSmall) },
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = DeckACyan.copy(alpha = 0.2f),
                                         selectedLabelColor = DeckACyan
@@ -341,12 +341,12 @@ fun VibeStudioScreen(
                             strokeWidth = 2.5.dp
                         )
                         Spacer(modifier = Modifier.width(10.dp))
-                        Text("Αναζήτηση τραγουδιών & μίξη...", style = MaterialTheme.typography.labelLarge)
+                        Text("Searching tracks & building mix...", style = MaterialTheme.typography.labelLarge)
                     } else {
                         Icon(Icons.Default.AutoAwesome, contentDescription = null, modifier = Modifier.size(20.dp))
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Δημιουργία DJ Playlist",
+                            text = "Generate DJ Playlist",
                             style = MaterialTheme.typography.labelLarge,
                             fontWeight = FontWeight.Bold
                         )
@@ -381,7 +381,7 @@ fun VibeStudioScreen(
                                 verticalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
                                 Text(
-                                    text = "ΕΤΟΙΜΟ ΣΕΤ · ${outcome.playlist.tracks.size} ΤΡΑΓΟΥΔΙΑ",
+                                    text = "SET READY · ${outcome.playlist.tracks.size} TRACKS",
                                     style = MaterialTheme.typography.labelMedium,
                                     color = AcidMint
                                 )
@@ -391,10 +391,10 @@ fun VibeStudioScreen(
                                     color = TextPrimary
                                 )
                                 Text(
-                                    text = "Εντοπίστηκαν ${outcome.resolvedYouTubeCount} τραγούδια από YouTube" +
+                                    text = "Matched ${outcome.resolvedYouTubeCount} YouTube tracks" +
                                         if (outcome.resolvedYouTubeCount < outcome.playlist.tracks.size)
-                                            " (τα υπόλοιπα φορτώθηκαν με studio groove stems)."
-                                        else " με έτοιμα cues αλλαγής ${outcome.playlist.crossfadeSeconds}s.",
+                                            " (remaining slots filled with studio groove stems)."
+                                        else " with ${outcome.playlist.crossfadeSeconds}s transition cues ready.",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = TextSecondary
                                 )
@@ -412,7 +412,7 @@ fun VibeStudioScreen(
                                 ) {
                                     Icon(Icons.Default.PlayArrow, contentDescription = null)
                                     Spacer(modifier = Modifier.width(6.dp))
-                                    Text("Άνοιγμα & DJing στο Booth", fontWeight = FontWeight.Bold)
+                                    Text("Open & DJ in Booth", fontWeight = FontWeight.Bold)
                                 }
                             }
                         }

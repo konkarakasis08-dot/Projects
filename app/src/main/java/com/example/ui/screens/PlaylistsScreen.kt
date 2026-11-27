@@ -94,12 +94,12 @@ fun PlaylistsScreen(
             item {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
-                        text = "ΑΠΟΘΗΚΕΥΜΕΝΑ DJ ΣΕΤ",
+                        text = "SAVED DJ SETS",
                         style = MaterialTheme.typography.labelMedium,
                         color = AcidMint
                     )
                     Text(
-                        text = "Οι Λίστες σου",
+                        text = "Your Playlists",
                         style = MaterialTheme.typography.headlineSmall,
                         color = TextPrimary
                     )
@@ -121,8 +121,8 @@ fun PlaylistsScreen(
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             Icon(Icons.Default.LibraryMusic, contentDescription = null, tint = DeckACyan, modifier = Modifier.size(36.dp))
-                            Text("Δεν υπάρχουν αποθηκευμένες λίστες", style = MaterialTheme.typography.titleMedium, color = TextPrimary)
-                            Text("Φτιάξε μια νέα λίστα από το Vibe Studio ή πάτησε +", style = MaterialTheme.typography.bodySmall, color = TextSecondary)
+                            Text("No saved playlists", style = MaterialTheme.typography.titleMedium, color = TextPrimary)
+                            Text("Create a new set in Vibe Studio or tap +", style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                         }
                     }
                 }
@@ -173,7 +173,7 @@ fun PlaylistsScreen(
                                             )
                                         }
                                         Text(
-                                            text = "${playlist.tracks.size} κομμάτια · ${playlist.crossfadeSeconds}s mix",
+                                            text = "${playlist.tracks.size} tracks · ${playlist.crossfadeSeconds}s mix",
                                             style = MaterialTheme.typography.labelSmall,
                                             color = TextMuted
                                         )
@@ -201,7 +201,7 @@ fun PlaylistsScreen(
                                 ) {
                                     Icon(
                                         imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                                        contentDescription = "Προβολή κομματιών",
+                                        contentDescription = "Show tracks",
                                         tint = TextSecondary
                                     )
                                 }
@@ -227,7 +227,7 @@ fun PlaylistsScreen(
                                     Icon(Icons.Default.PlayArrow, contentDescription = null, modifier = Modifier.size(18.dp))
                                     Spacer(modifier = Modifier.width(6.dp))
                                     Text(
-                                        text = if (isActive) "Παίζει στο Booth" else "Φόρτωση στο DJ Booth",
+                                        text = if (isActive) "Playing in Booth" else "Load in DJ Booth",
                                         style = MaterialTheme.typography.labelLarge,
                                         fontWeight = FontWeight.Bold
                                     )
@@ -239,7 +239,7 @@ fun PlaylistsScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.DeleteOutline,
-                                        contentDescription = "Διαγραφή λίστας",
+                                        contentDescription = "Delete playlist",
                                         tint = DeckBCoral
                                     )
                                 }
@@ -252,7 +252,7 @@ fun PlaylistsScreen(
                                 ) {
                                     if (playlist.tracks.isEmpty()) {
                                         Text(
-                                            text = "Άδεια λίστα — πρόσθεσε τραγούδια από την καρτέλα YouTube.",
+                                            text = "Empty playlist — add tracks from the YouTube tab.",
                                             style = MaterialTheme.typography.bodySmall,
                                             color = TextMuted
                                         )
@@ -293,7 +293,7 @@ fun PlaylistsScreen(
                                                 ) {
                                                     Icon(
                                                         imageVector = Icons.Default.DeleteOutline,
-                                                        contentDescription = "Αφαίρεση τραγουδιού",
+                                                        contentDescription = "Remove track",
                                                         tint = TextMuted,
                                                         modifier = Modifier.size(18.dp)
                                                     )
@@ -318,7 +318,7 @@ fun PlaylistsScreen(
                 .padding(16.dp)
                 .testTag("create_playlist_fab")
         ) {
-            Icon(Icons.Default.Add, contentDescription = "Νέα λίστα")
+            Icon(Icons.Default.Add, contentDescription = "New playlist")
         }
     }
 
@@ -344,31 +344,31 @@ private fun CreatePlaylistDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = ConsoleSurfaceElevated,
-        title = { Text("Νέα DJ Λίστα", color = TextPrimary) },
+        title = { Text("New DJ Playlist", color = TextPrimary) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Όνομα λίστας") },
+                    label = { Text("Playlist name") },
                     singleLine = true
                 )
                 OutlinedTextField(
                     value = vibe,
                     onValueChange = { vibe = it },
-                    label = { Text("Αίσθηση / Είδος") },
+                    label = { Text("Vibe / Genre") },
                     singleLine = true
                 )
             }
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(name, vibe) }) {
-                Text("Δημιουργία", color = DeckACyan)
+                Text("Create", color = DeckACyan)
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Ακύρωση", color = TextSecondary)
+                Text("Cancel", color = TextSecondary)
             }
         }
     )
